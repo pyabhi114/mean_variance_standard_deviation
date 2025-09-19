@@ -1,1 +1,158 @@
-<html><head><title>My Page</title></head><body><h1>Hello GitHub!</h1></body></html> 
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calculate Mean, Variance, and Standard Deviation</title>
+  <meta name="description" content="Step-by-step guide to compute mean, variance, and standard deviation with a worked example." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121935;
+      --text: #e8ecff;
+      --muted: #b9c2ff;
+      --accent: #7aa2ff;
+      --accent-2: #9d79ff;
+      --code: #0f1430;
+      --ok: #34d399;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 10% -10%, #1a2150 0%, transparent 60%),
+                  radial-gradient(800px 800px at 120% 10%, #1b2a6b 0%, transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.04);
+      backdrop-filter: blur(6px);
+    }
+    h1, h2, h3 { line-height: 1.25; }
+    h1 {
+      margin: 0 0 12px;
+      font-size: clamp(28px, 3.4vw, 40px);
+      letter-spacing: 0.2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .subtitle { color: var(--muted); margin-top: 0; margin-bottom: 24px; }
+    .panel {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+    .k {
+      color: var(--accent);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .steps { counter-reset: s; }
+    .steps h3::before { counter-increment: s; content: counter(s) ". "; color: var(--accent-2); }
+    .math { overflow-x: auto; }
+    code, pre, .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .note {
+      border-left: 4px solid var(--accent);
+      padding: 12px 14px;
+      background: rgba(122,162,255,0.08);
+      border-radius: 8px;
+      margin: 16px 0;
+    }
+    .ok { color: var(--ok); font-weight: 600; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    ul, ol { padding-left: 20px; }
+    hr { border: none; border-top: 1px solid rgba(255,255,255,0.08); margin: 24px 0; }
+  </style>
+  <!-- MathJax for clean, accessible math rendering -->
+  <script>
+    window.MathJax = { tex: { inlineMath: [['$','$'], ['\\(','\\)']] } };
+  </script>
+  <script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+  <main class="container" role="main">
+    <header>
+      <h1>Calculate Mean, Variance, and Standard Deviation</h1>
+      <p class="subtitle">A concise, step-by-step walkthrough with formulas and a working example.</p>
+      <p class="subtitle">By Abhishek Gogna - Professional Algo-Based Quantitative Research Analyst</p>
+    </header>
+
+    <section class="panel">
+      <h2>Dataset</h2>
+      <p>We will use the following data set of 5 numbers:</p>
+      <p class="mono">X = [4, 8, 6, 5, 3]</p>
+    </section>
+
+    <section class="steps">
+      <h2>Step-by-Step Guide</h2>
+
+      <h3>Calculate the Mean</h3>
+      <p>The <strong>mean</strong> (average) is the sum of all the numbers divided by the count of numbers.</p>
+      <div class="math">
+        <p>Mean $= \\dfrac{\\sum X}{N}$</p>
+        <p>Mean $= \\dfrac{4+8+6+5+3}{5} = \\dfrac{26}{5} = 5.2$</p>
+      </div>
+
+      <h3>Calculate the Variance</h3>
+      <p><strong>Variance</strong> measures the average of the squared differences from the mean.</p>
+      <div class="math">
+        <p>Variance $= \\dfrac{\\sum (X_i - \\mu)^2}{N}$</p>
+      </div>
+      <ol>
+        <li>Subtract the mean from each value and square the result:</li>
+      </ol>
+      <ul>
+        <li>$(4 - 5.2)^2 = 1.44$</li>
+        <li>$(8 - 5.2)^2 = 7.84$</li>
+        <li>$(6 - 5.2)^2 = 0.64$</li>
+        <li>$(5 - 5.2)^2 = 0.04$</li>
+        <li>$(3 - 5.2)^2 = 4.84$</li>
+      </ul>
+      <ol start="2">
+        <li>Sum the squared differences and divide by $N=5$:</li>
+      </ol>
+      <div class="math">
+        <p>$1.44 + 7.84 + 0.64 + 0.04 + 4.84 = 14.8$</p>
+        <p>Variance $= \\dfrac{14.8}{5} = 2.96$</p>
+      </div>
+
+      <h3>Calculate the Standard Deviation</h3>
+      <p>The <strong>standard deviation</strong> is the square root of the variance and has the same units as the data.</p>
+      <div class="math">
+        <p>$\\text{Standard Deviation} = \\sqrt{\\text{Variance}} = \\sqrt{2.96} \\approx 1.72$</p>
+      </div>
+
+      <div class="note" role="note">
+        <strong>Note:</strong> For a <em>sample</em> (not the full population), use $N-1$ in the denominator (this is the unbiased sample variance, often denoted $s^2$).
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="panel">
+      <h2>Summary</h2>
+      <ul>
+        <li><strong>Mean</strong>: 5.2</li>
+        <li><strong>Variance</strong>: 2.96</li>
+        <li><strong>Standard Deviation</strong>: 1.72</li>
+      </ul>
+    </section>
+
+    <footer style="margin-top:24px; color: var(--muted); font-size: 14px;">
+      <span>Rendered with MathJax. You can view-source this file for a minimal, clean HTML structure.</span>
+    </footer>
+  </main>
+</body>
+</html>
